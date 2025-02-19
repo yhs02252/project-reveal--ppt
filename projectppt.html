@@ -1,0 +1,302 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"
+    />
+
+    <title>reveal.js</title>
+
+    <link rel="stylesheet" href="dist/reset.css" />
+    <link rel="stylesheet" href="dist/reveal.css" />
+    <link rel="stylesheet" href="dist/theme/night.css" />
+
+    <!-- Theme used for syntax highlighted code -->
+    <link rel="stylesheet" href="plugin/highlight/monokai.css" />
+  </head>
+  <body>
+    <div class="reveal">
+      <div class="slides">
+		<section>
+			<section >
+				<div>
+					팀 ThisPet ch.
+				</div>
+				<br>
+				<div>
+					팀장 유창규
+				</div>
+			</section>
+			
+			<section>
+				<p class="fragment">프로젝트 개요</p>
+				<br>
+					<div class="fragment" style="font-size: 30px; font-weight: 100; ">
+						<p>반려동물을 키우는데 있어, 처음에 무엇을 준비해야하는지<br>상식적으로 알고있어야하는 정보는 무엇인지,
+							<br><br>검색을 하더라도 원하는 정보는 여기저기 흩어져 숨어있기라도 하듯
+						<br>찾아다녀야하는 불편함을 해소하기위해
+					<br>반려동물을 위한 정보를 간편하게 한눈에 들어오게끔 제공하는것이 목적</p>
+					</div>
+			</section>
+
+			<section data-background="/projectcontent/메인허ㅣ면.png" data-background-size="900px">
+			</section>
+
+
+			<section data-background="/projectcontent/메인허ㅣ면.png" data-background-size="900px" data-background-opacity="0.3">
+						쉬운 사용자 접근성
+			</section>
+			<section data-background="/projectcontent/메인허ㅣ면.png" data-background-size="900px" data-background-opacity="0.3">
+						빠른 정보전달
+			</section>
+			<section data-background="/projectcontent/메인허ㅣ면.png" data-background-size="900px" data-background-opacity="0.3">
+						필요시 즉각적인 정보 확인
+			</section>
+
+
+			
+			<section>
+				<h3 class="fragment">담당 업무</h3>
+				<br>
+				<ul style="font-size: 24px;">
+					<li class="fragment">○  베이스 레이아웃 및 메인 페이지 구성, 고객센터 구축 </li>
+					<br>
+					<li class="fragment">○  전체적인 팀원들의 에러 수정 및 방향 제시</li>
+					<br>
+					<li class="fragment">○  프로젝트 Github 설정 및 관리</li>
+					<br>
+					<li class="fragment">○  데이터베이스 기반 설계 후 배포</li>
+				</ul>
+			</section>
+		</section>
+
+		<section >
+			<div class="r-stack">
+				<img class="fragment" src="/projectcontent/1차 프로젝트 기간.png" alt="">
+				<img class="fragment" src="/projectcontent/2차 프로젝트 기간.png" alt="">
+			</div>
+		</section>
+		
+		<section>
+			<h3 class="fragment">기본 베이스 템플릿 제공</h3>
+			<ul>
+				<li class="fragment">Index</li>
+				<li class="fragment">Layout</li>
+				<li class="fragment">Fragment 
+						<span class="fragment"><br> - Header</span>
+						<span class="fragment">, Footer</span>
+				</li>
+			</ul>
+		</section>
+
+
+
+
+		<section data-background="">
+			<div class="r-stack">
+				<p class="fragment" style="font-size: 60px;">
+					ERD
+				</p>
+				<img class="fragment" src="/projectcontent/관계도.png" alt="">
+				<img class="fragment" src="/projectcontent/drawio.png" alt="">
+			</div>
+		</section>
+
+		<section data-background="/projectcontent/환경.png">
+			<div style="color: black;">
+				<p class="fragment">서버</p>
+				<p class="fragment">요소</p>
+				<p class="fragment">언어</p>
+				<p class="fragment">브라우저</p>
+			</div>
+		</section>
+
+        <section data-auto-animate style="width: 500px;" data-background="/projectcontent/mainpage6.png" data-background-size="500px" data-background-position="90%">
+            <h3 data-id="code-title">Main Page</h3>
+			<pre data-id="code-animation" style="width: 550px; height: 500px; left: -40px;">
+				<code style="font-size: 10px;" data-line-numbers data-trim data-noescape>
+					@Id
+					@GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "board_seq_gen")
+					private Long bno;
+				
+					@Column(nullable = false)
+					private String title;
+				
+					@Column(nullable = false)
+					private String content;
+				
+					@ManyToOne(fetch = FetchType.LAZY)
+					private HasPet hasPet;
+						
+					@ManyToOne(fetch = FetchType.LAZY)
+					private Member member;
+				
+					private String boardCategory;
+				
+					@Column(columnDefinition = "integer default 0", nullable = false)
+					private int viewCount;
+				
+					// like 개수 - list 용
+					@Column(columnDefinition = "integer default 0")
+					private int boardLikeCount;
+				
+					// Board 삭제시 댓글도 삭제
+					@OneToMany(mappedBy = "board", cascade = CascadeType.REMOVE)
+					@Builder.Default
+					private List<BoardReply> boardReplies = new ArrayList<>();
+				
+					@OneToMany(mappedBy = "board", cascade = CascadeType.REMOVE)
+					@Builder.Default
+					private List<BoardLikeCheck> boardLikeCheck = new ArrayList<>();
+				</code>
+			</pre>
+          </section>
+		  <section data-auto-animate style="width: 500px;" data-background="/projectcontent/mainpage6.png" data-background-size="500px" data-background-position="90%">
+			<h3 data-id="code-title">Main Page</h3>
+			<pre data-id="code-animation" style="width: 550px; left: -40px;">
+				<code style="font-size: 15px;" data-line-numbers="1-9|13-16|18-20" data-trim data-noescape>
+			@Id
+			@GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "board_seq_gen")
+			private Long bno;
+		
+			@Column(nullable = false)
+			private String title;
+		
+			@Column(nullable = false)
+			private String content;
+		
+			@ManyToOne(fetch = FetchType.LAZY)
+			private HasPet hasPet;
+				
+			@ManyToOne(fetch = FetchType.LAZY)
+			private Member member;
+		
+			private String boardCategory;
+		
+			@Column(columnDefinition = "integer default 0", nullable = false)
+			private int viewCount;
+		
+			// like 개수 - list 용
+			@Column(columnDefinition = "integer default 0")
+			private int boardLikeCount;
+		
+			// Board 삭제시 댓글도 삭제
+			@OneToMany(mappedBy = "board", cascade = CascadeType.REMOVE)
+			@Builder.Default
+			private List<BoardReply> boardReplies = new ArrayList<>();
+		
+			@OneToMany(mappedBy = "board", cascade = CascadeType.REMOVE)
+			@Builder.Default
+			private List<BoardLikeCheck> boardLikeCheck = new ArrayList<>();
+			</code>
+		</pre>
+		  </section>
+		  
+        <section data-auto-animate style="width: 500px;" data-background="/projectcontent/mainpage6.png" data-background-size="500px" data-background-position="90%">
+            <h3 data-id="code-title">Main Page</h3>
+			<pre data-id="code-animation" style="width: 550px; height: 500px; left: -40px;">
+				<code style="font-size: 10px;" data-line-numbers data-trim data-noescape>
+					@Id
+					@GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "board_seq_gen")
+					private Long bno;
+				
+					@Column(nullable = false)
+					private String title;
+				
+					@Column(nullable = false)
+					private String content;
+				
+					@ManyToOne(fetch = FetchType.LAZY)
+					private HasPet hasPet;
+						
+					@ManyToOne(fetch = FetchType.LAZY)
+					private Member member;
+				
+					private String boardCategory;
+				
+					@Column(columnDefinition = "integer default 0", nullable = false)
+					private int viewCount;
+				
+					// like 개수 - list 용
+					@Column(columnDefinition = "integer default 0")
+					private int boardLikeCount;
+				
+					// Board 삭제시 댓글도 삭제
+					@OneToMany(mappedBy = "board", cascade = CascadeType.REMOVE)
+					@Builder.Default
+					private List<BoardReply> boardReplies = new ArrayList<>();
+				
+					@OneToMany(mappedBy = "board", cascade = CascadeType.REMOVE)
+					@Builder.Default
+					private List<BoardLikeCheck> boardLikeCheck = new ArrayList<>();
+				</code>
+			</pre>
+          </section>
+		  <section data-auto-animate style="width: 500px;" data-background="/projectcontent/mainpage6.png" data-background-size="500px" data-background-position="90%">
+			<h3 data-id="code-title">Main Page</h3>
+			<pre data-id="code-animation" style="width: 550px; left: -40px;">
+				<code style="font-size: 15px;" data-line-numbers="1-9|13-16|18-20" data-trim data-noescape>
+			@Id
+			@GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "board_seq_gen")
+			private Long bno;
+		
+			@Column(nullable = false)
+			private String title;
+		
+			@Column(nullable = false)
+			private String content;
+		
+			@ManyToOne(fetch = FetchType.LAZY)
+			private HasPet hasPet;
+				
+			@ManyToOne(fetch = FetchType.LAZY)
+			private Member member;
+		
+			private String boardCategory;
+		
+			@Column(columnDefinition = "integer default 0", nullable = false)
+			private int viewCount;
+		
+			// like 개수 - list 용
+			@Column(columnDefinition = "integer default 0")
+			private int boardLikeCount;
+		
+			// Board 삭제시 댓글도 삭제
+			@OneToMany(mappedBy = "board", cascade = CascadeType.REMOVE)
+			@Builder.Default
+			private List<BoardReply> boardReplies = new ArrayList<>();
+		
+			@OneToMany(mappedBy = "board", cascade = CascadeType.REMOVE)
+			@Builder.Default
+			private List<BoardLikeCheck> boardLikeCheck = new ArrayList<>();
+			</code>
+		</pre>
+		  </section>
+
+        <section>
+			<p class="fragment">comment1</p>
+			<p class="fragment">comment2</p>
+			<p class="fragment">comment3</p>
+		</section>
+      </div>
+    </div>
+
+    <script src="dist/reveal.js"></script>
+    <script src="plugin/notes/notes.js"></script>
+    <script src="plugin/markdown/markdown.js"></script>
+    <script src="plugin/highlight/highlight.js"></script>
+    <script>
+      // More info about initialization & config:
+      // - https://revealjs.com/initialization/
+      // - https://revealjs.com/config/
+      Reveal.initialize({
+        hash: true,
+
+        // Learn about plugins: https://revealjs.com/plugins/
+        plugins: [RevealMarkdown, RevealHighlight, RevealNotes],
+      });
+    </script>
+  </body>
+</html>
