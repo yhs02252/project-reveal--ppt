@@ -11,7 +11,7 @@
 
     <link rel="stylesheet" href="dist/reset.css" />
     <link rel="stylesheet" href="dist/reveal.css" />
-    <link rel="stylesheet" href="dist/theme/night.css" />
+    <link rel="stylesheet" href="dist/theme/league.css" />
 
     <!-- Theme used for syntax highlighted code -->
     <link rel="stylesheet" href="plugin/highlight/monokai.css" />
@@ -19,267 +19,873 @@
   <body>
     <div class="reveal">
       <div class="slides">
-		<section>
-			<section >
-				<div>
-					팀 ThisPet ch.
-				</div>
-				<br>
-				<div>
-					팀장 유창규
-				</div>
-			</section>
-			
-			<section>
-				<p class="fragment">프로젝트 개요</p>
-				<br>
-					<div class="fragment" style="font-size: 30px; font-weight: 100; ">
-						<p>반려동물을 키우는데 있어, 처음에 무엇을 준비해야하는지<br>상식적으로 알고있어야하는 정보는 무엇인지,
-							<br><br>검색을 하더라도 원하는 정보는 여기저기 흩어져 숨어있기라도 하듯
-						<br>찾아다녀야하는 불편함을 해소하기위해
-					<br>반려동물을 위한 정보를 간편하게 한눈에 들어오게끔 제공하는것이 목적</p>
-					</div>
-			</section>
-
-			<section data-background="/projectcontent/메인허ㅣ면.png" data-background-size="900px">
-			</section>
-
-
-			<section data-background="/projectcontent/메인허ㅣ면.png" data-background-size="900px" data-background-opacity="0.3">
-						쉬운 사용자 접근성
-			</section>
-			<section data-background="/projectcontent/메인허ㅣ면.png" data-background-size="900px" data-background-opacity="0.3">
-						빠른 정보전달
-			</section>
-			<section data-background="/projectcontent/메인허ㅣ면.png" data-background-size="900px" data-background-opacity="0.3">
-						필요시 즉각적인 정보 확인
-			</section>
-
-
-			
-			<section>
-				<h3 class="fragment">담당 업무</h3>
-				<br>
-				<ul style="font-size: 24px;">
-					<li class="fragment">○  베이스 레이아웃 및 메인 페이지 구성, 고객센터 구축 </li>
-					<br>
-					<li class="fragment">○  전체적인 팀원들의 에러 수정 및 방향 제시</li>
-					<br>
-					<li class="fragment">○  프로젝트 Github 설정 및 관리</li>
-					<br>
-					<li class="fragment">○  데이터베이스 기반 설계 후 배포</li>
-				</ul>
-			</section>
-		</section>
-
-		<section >
-			<div class="r-stack">
-				<img class="fragment" src="/projectcontent/1차 프로젝트 기간.png" alt="">
-				<img class="fragment" src="/projectcontent/2차 프로젝트 기간.png" alt="">
-			</div>
-		</section>
-		
-		<section>
-			<h3 class="fragment">기본 베이스 템플릿 제공</h3>
-			<ul>
-				<li class="fragment">Index</li>
-				<li class="fragment">Layout</li>
-				<li class="fragment">Fragment 
-						<span class="fragment"><br> - Header</span>
-						<span class="fragment">, Footer</span>
-				</li>
-			</ul>
-		</section>
-
-
-
-
-		<section data-background="">
-			<div class="r-stack">
-				<p class="fragment" style="font-size: 60px;">
-					ERD
-				</p>
-				<img class="fragment" src="/projectcontent/관계도.png" alt="">
-				<img class="fragment" src="/projectcontent/drawio.png" alt="">
-			</div>
-		</section>
-
-		<section data-background="/projectcontent/환경.png">
-			<div style="color: black;">
-				<p class="fragment">서버</p>
-				<p class="fragment">요소</p>
-				<p class="fragment">언어</p>
-				<p class="fragment">브라우저</p>
-			</div>
-		</section>
-
-        <section data-auto-animate style="width: 500px;" data-background="/projectcontent/mainpage6.png" data-background-size="500px" data-background-position="90%">
-            <h3 data-id="code-title">Main Page</h3>
-			<pre data-id="code-animation" style="width: 550px; height: 500px; left: -40px;">
-				<code style="font-size: 10px;" data-line-numbers data-trim data-noescape>
-					@Id
-					@GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "board_seq_gen")
-					private Long bno;
-				
-					@Column(nullable = false)
-					private String title;
-				
-					@Column(nullable = false)
-					private String content;
-				
-					@ManyToOne(fetch = FetchType.LAZY)
-					private HasPet hasPet;
-						
-					@ManyToOne(fetch = FetchType.LAZY)
-					private Member member;
-				
-					private String boardCategory;
-				
-					@Column(columnDefinition = "integer default 0", nullable = false)
-					private int viewCount;
-				
-					// like 개수 - list 용
-					@Column(columnDefinition = "integer default 0")
-					private int boardLikeCount;
-				
-					// Board 삭제시 댓글도 삭제
-					@OneToMany(mappedBy = "board", cascade = CascadeType.REMOVE)
-					@Builder.Default
-					private List<BoardReply> boardReplies = new ArrayList<>();
-				
-					@OneToMany(mappedBy = "board", cascade = CascadeType.REMOVE)
-					@Builder.Default
-					private List<BoardLikeCheck> boardLikeCheck = new ArrayList<>();
-				</code>
-			</pre>
+        <section>
+          <section>
+            <div style="font-size: 50px; font-weight: 700;">ThisPet ch.</div>
           </section>
-		  <section data-auto-animate style="width: 500px;" data-background="/projectcontent/mainpage6.png" data-background-size="500px" data-background-position="90%">
-			<h3 data-id="code-title">Main Page</h3>
-			<pre data-id="code-animation" style="width: 550px; left: -40px;">
-				<code style="font-size: 15px;" data-line-numbers="1-9|13-16|18-20" data-trim data-noescape>
-			@Id
-			@GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "board_seq_gen")
-			private Long bno;
-		
-			@Column(nullable = false)
-			private String title;
-		
-			@Column(nullable = false)
-			private String content;
-		
-			@ManyToOne(fetch = FetchType.LAZY)
-			private HasPet hasPet;
-				
-			@ManyToOne(fetch = FetchType.LAZY)
-			private Member member;
-		
-			private String boardCategory;
-		
-			@Column(columnDefinition = "integer default 0", nullable = false)
-			private int viewCount;
-		
-			// like 개수 - list 용
-			@Column(columnDefinition = "integer default 0")
-			private int boardLikeCount;
-		
-			// Board 삭제시 댓글도 삭제
-			@OneToMany(mappedBy = "board", cascade = CascadeType.REMOVE)
-			@Builder.Default
-			private List<BoardReply> boardReplies = new ArrayList<>();
-		
-			@OneToMany(mappedBy = "board", cascade = CascadeType.REMOVE)
-			@Builder.Default
-			private List<BoardLikeCheck> boardLikeCheck = new ArrayList<>();
-			</code>
-		</pre>
-		  </section>
-		  
-        <section data-auto-animate style="width: 500px;" data-background="/projectcontent/mainpage6.png" data-background-size="500px" data-background-position="90%">
-            <h3 data-id="code-title">Main Page</h3>
-			<pre data-id="code-animation" style="width: 550px; height: 500px; left: -40px;">
-				<code style="font-size: 10px;" data-line-numbers data-trim data-noescape>
-					@Id
-					@GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "board_seq_gen")
-					private Long bno;
-				
-					@Column(nullable = false)
-					private String title;
-				
-					@Column(nullable = false)
-					private String content;
-				
-					@ManyToOne(fetch = FetchType.LAZY)
-					private HasPet hasPet;
-						
-					@ManyToOne(fetch = FetchType.LAZY)
-					private Member member;
-				
-					private String boardCategory;
-				
-					@Column(columnDefinition = "integer default 0", nullable = false)
-					private int viewCount;
-				
-					// like 개수 - list 용
-					@Column(columnDefinition = "integer default 0")
-					private int boardLikeCount;
-				
-					// Board 삭제시 댓글도 삭제
-					@OneToMany(mappedBy = "board", cascade = CascadeType.REMOVE)
-					@Builder.Default
-					private List<BoardReply> boardReplies = new ArrayList<>();
-				
-					@OneToMany(mappedBy = "board", cascade = CascadeType.REMOVE)
-					@Builder.Default
-					private List<BoardLikeCheck> boardLikeCheck = new ArrayList<>();
-				</code>
-			</pre>
+
+          <section>
+            <p class="fragment">프로젝트 개요</p>
+            <br />
+            <div class="fragment" style="font-size: 25px; font-weight: 200">
+              <p>
+                처음 반려동물을 키우게 되면, 어떻게 다뤄야할지,<br />
+                어떤 음식을 취급해야할지, 여기저기 서로 다른 정보를 찾기에
+                인터넷은 너무나도 방대합니다. <br />
+                그래서 저희는 가장 기본적인 정보부터 자주 잊어버릴 수 있을만한
+                <br />
+                정보를, 필요할 때 바로 찾아볼 수 있는 서비스를 제공 하려 합니다
+              </p>
+            </div>
           </section>
-		  <section data-auto-animate style="width: 500px;" data-background="/projectcontent/mainpage6.png" data-background-size="500px" data-background-position="90%">
-			<h3 data-id="code-title">Main Page</h3>
-			<pre data-id="code-animation" style="width: 550px; left: -40px;">
-				<code style="font-size: 15px;" data-line-numbers="1-9|13-16|18-20" data-trim data-noescape>
-			@Id
-			@GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "board_seq_gen")
-			private Long bno;
-		
-			@Column(nullable = false)
-			private String title;
-		
-			@Column(nullable = false)
-			private String content;
-		
-			@ManyToOne(fetch = FetchType.LAZY)
-			private HasPet hasPet;
-				
-			@ManyToOne(fetch = FetchType.LAZY)
-			private Member member;
-		
-			private String boardCategory;
-		
-			@Column(columnDefinition = "integer default 0", nullable = false)
-			private int viewCount;
-		
-			// like 개수 - list 용
-			@Column(columnDefinition = "integer default 0")
-			private int boardLikeCount;
-		
-			// Board 삭제시 댓글도 삭제
-			@OneToMany(mappedBy = "board", cascade = CascadeType.REMOVE)
-			@Builder.Default
-			private List<BoardReply> boardReplies = new ArrayList<>();
-		
-			@OneToMany(mappedBy = "board", cascade = CascadeType.REMOVE)
-			@Builder.Default
-			private List<BoardLikeCheck> boardLikeCheck = new ArrayList<>();
-			</code>
-		</pre>
-		  </section>
+
+          <section
+            data-background="/projectcontent/메인허ㅣ면.png"
+            data-background-size="1000px"
+          ></section>
+
+          <section
+            data-background="/projectcontent/메인허ㅣ면.png"
+            data-background-size="1000px"
+            data-background-opacity="0.3"
+          >
+            쉬운 사용자 접근성
+          </section>
+          <section
+            data-background="/projectcontent/메인허ㅣ면.png"
+            data-background-size="1000px"
+            data-background-opacity="0.3"
+          >
+            빠른 정보전달
+          </section>
+          <section
+            data-background="/projectcontent/메인허ㅣ면.png"
+            data-background-size="1000px"
+            data-background-opacity="0.3"
+          >
+            필요시 즉각적인 정보 확인
+          </section>
+
+          <section>
+            <p class="fragment">사이트 운영 방침</p>
+            <div class="fragment" style="font-size: 25px; font-weight: 200">
+              <p>
+                "반려동물을 키우는데 있어 기본적으로 가져야 할 정보들을 한 눈에
+                쉽고 빠르게 전달하기 위한 홈페이지 겸 소통공간"
+              </p>
+            </div>
+          </section>
+
+        </section>
 
         <section>
-			<p class="fragment">comment1</p>
-			<p class="fragment">comment2</p>
-			<p class="fragment">comment3</p>
+          <div class="r-stack">
+            <img
+              class="fragment"
+              src="/projectcontent/1차 프로젝트 기간.png"
+              alt=""
+            />
+            <img
+              class="fragment"
+              src="/projectcontent/2차 프로젝트 기간.png"
+              alt=""
+            />
+          </div>
+        </section>
+
+        <section data-background="/projectcontent/환경.png"></section>
+
+        <section data-background="">
+          <div class="r-stack">
+            <p class="fragment" style="font-size: 60px">ERD</p>
+            <img class="fragment" src="/projectcontent/관계도.png" alt="" />
+            <img class="fragment" src="/projectcontent/drawio.png" alt="" />
+          </div>
+        </section>
+
+
+        <section>
+          <section>
+            <div style="font-size: 50px; font-weight: 900">
+              Main Page, 고객센터
+            </div>
+            <br />
+            <div>유창규</div>
+          </section>
+          <section>
+            <h3 class="fragment">주 업무</h3>
+            <br />
+            <ul style="font-size: 24px">
+              <li class="fragment">
+                ○ 베이스 레이아웃 및 메인 페이지 구성, 고객센터 구축
+              </li>
+              <br />
+              <li class="fragment">
+                ○ 전체적인 팀원들의 에러 수정 및 방향 제시
+              </li>
+              <br />
+              <li class="fragment">○ 프로젝트 Github 설정 및 관리</li>
+              <br />
+              <li class="fragment">○ 데이터베이스 기반 설계 후 배포</li>
+            </ul>
+          </section>
+        </section>
+
+        <section
+          data-auto-animate
+          style="width: 500px"
+          data-background="/projectcontent/main.png"
+          data-background-size="1200px"
+        ></section>
+
+        <!-- 내용 발표 -->
+        <section
+          data-auto-animate
+          style="width: 500px"
+          data-background="/projectcontent/mainpage6.png"
+          data-background-size="500px"
+          data-background-position="80%"
+        >
+          <h3 data-id="code-title">Main Page</h3>
+          <pre
+            data-id="code-animation"
+            style="width: 550px; height: 500px; left: -40px"
+          >
+				<code style="font-size: 10px;" data-line-numbers data-trim data-noescape>
+					/* Flip card styling */
+      .flip-card {
+        width: 320px;
+        height: 400px;
+        transform-style: preserve-3d;
+        transition: transform 0.4s ease-in-out;
+        position: relative;
+        box-shadow: 0 15px 30px rgba(0, 0, 0, 0.1);
+        border-radius: 15px;
+      }
+
+      /* Flip on hover */
+      .flip-card-container:hover .flip-card {
+        transform: rotateY(180deg);
+      }
+
+      /* Card front and back */
+      .flip-card-back,
+      .flip-card-front {
+        position: absolute;
+        width: 100%;
+        height: 100%;
+        backface-visibility: hidden;
+
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        border-radius: 15px;
+        color: #fff;
+        text-align: center;
+      }
+
+      /* Front card design */
+      #dog .flip-card-front {
+        background: linear-gradient(135deg, #0f33ff, #ff99ac);
+        box-shadow: inset 0 0 20px rgba(255, 255, 255, 0.2),
+          0 5px 15px rgba(0, 0, 0, 0.2);
+        padding: 20px;
+        display: flex;
+      }
+
+      #cat .flip-card-front {
+        background: linear-gradient(135deg, #f60b3e, #1be0af);
+        box-shadow: inset 0 0 20px rgba(255, 255, 255, 0.2),
+          0 5px 15px rgba(0, 0, 0, 0.2);
+        padding: 20px;
+        display: flex;
+      }
+
+      .flip-card-front h2 {
+        font-family: "Jua", serif;
+        font-weight: 400;
+        font-style: normal;
+        margin: 0;
+        font-size: 35px;
+        color: #f0f0f0;
+      }
+
+      .flip-card-front p {
+        font-size: 14px;
+        margin-top: 10px;
+        line-height: 1.5;
+      }
+			</code>
+		</pre>
+        </section>
+
+        <section>
+		<h3>고객센터</h3>
+		<img src="/projectcontent/announcement1.png" style="width: 1000px;" alt="">
+	</section>
+
+        <section
+          data-auto-animate
+          style="width: 500px"
+          data-background="/projectcontent/announcement3.png"
+          data-background-size="900px"
+          data-background-position="95%"
+        >
+          <h3 data-id="code-title">고객센터</h3>
+          <pre
+            data-id="code-animation"
+            style="width: 550px; height: 500px; left: -100px"
+          >
+			  <code style="font-size: 10px;" data-line-numbers="|1-6|8-32" data-trim data-noescape>
+
+				@Override
+				public Long create(CustomerAnnouncementDTO dto) {
+					CustomerAnnouncement customerAnnouncement = customerAnnouncementRepository.save(dtoToEntity(dto));
+			
+					return customerAnnouncement.getCano();
+				}
+
+				@PreAuthorize("hasRole('ADMIN')")
+    @GetMapping("/announcementCreate")
+    public void getAnnouncementCreate(CustomerAnnouncementDTO dto,
+            @ModelAttribute("requestDTO") PageRequestDTO pageRequestDTO,
+            Model model, @AuthenticationPrincipal UserDetails userDetails) {
+
+    }
+
+    @PostMapping("/announcementCreate")
+    public String postAnnouncementCreate(@Valid CustomerAnnouncementDTO dto, BindingResult result,
+            @ModelAttribute("requestDTO") PageRequestDTO pageRequestDTO, RedirectAttributes rttr) {
+
+        if (result.hasErrors()) {
+            return "/customer/announcementCreate";
+        }
+
+        Long cano = service.create(dto);
+
+        rttr.addFlashAttribute("msg", cano + "번 공지사항이 작성되었습니다");
+        rttr.addAttribute("page", pageRequestDTO.getPage());
+        rttr.addAttribute("size", pageRequestDTO.getSize());
+        rttr.addAttribute("type", pageRequestDTO.getType());
+        rttr.addAttribute("keyword", pageRequestDTO.getKeyword());
+
+        return "redirect:announcement";
+    }
+		  </code>
+	  </pre>
+        </section>
+
+        <section
+          data-auto-animate
+          style="width: 500px"
+          data-background="/projectcontent/1대일.png"
+          data-background-size="1200px"
+        ></section>
+
+        <section
+          data-auto-animate
+          style="width: 500px"
+          data-background="/projectcontent/1대1.png"
+          data-background-size="1200px"
+        ></section>
+
+        <section
+          data-auto-animate
+          style="width: 500px"
+          data-background="/projectcontent/1대일문의.png"
+          data-background-size="600px"
+          data-background-position="80%"
+        >
+          <h3 data-id="code-title">고객센터</h3>
+          <pre data-id="code-animation" style="height: 500px">
+			<code style="font-size: 10px;" data-line-numbers="|1-13|15-26" data-trim data-noescape>
+			@Override
+			public Long register(CustomerQuestionDTO customerQuestionDTO) {
+				Map<String, Object> entityMap = dtoToEntity(customerQuestionDTO);
+		
+				CustomerQuestion customerQuestion = (CustomerQuestion) entityMap.get("customerQuestion");
+				customerQuestionRepository.save(customerQuestion);
+				if (entityMap.get("customerImages") != null) {
+					List<CustomerImage> customerImages = (List<CustomerImage>) entityMap.get("customerImages");
+					customerImages.forEach(images -> customerImageRepository.save(images));
+				}
+		
+				return customerQuestion.getCono();
+			}
+
+			@Override
+    @Transactional
+    public Long register(AdminReplyDTO adminReplyDTO) {
+        AdminReply adminReply = adminReplyRepository.save(dtoToEntity(adminReplyDTO));
+
+        CustomerQuestion customerQuestion = customerQuestionRepository
+                .findById(adminReply.getCustomerQuestion().getCono()).get();
+        customerQuestion.setClear(true);
+        customerQuestionRepository.save(customerQuestion);
+
+        return adminReply.getArno();
+    }
+		</code>
+	</pre>
+        </section>
+
+        <section
+          data-auto-animate
+          style="width: 500px"
+          data-background="/projectcontent/16.png"
+          data-background-size="600px 300px"
+          data-background-position="80%"
+        >
+          <h3 data-id="code-title">고객센터</h3>
+          <pre data-id="code-animation" style="height: 500px">
+			<code style="font-size: 10px;" data-line-numbers="|1-19|21-32" data-trim data-noescape>
+				@PostMapping("/adminreplypage")
+				public String postAdminReplyRegister(@Valid AdminReplyDTO dto, BindingResult result,
+						@ModelAttribute("requestDTO") PageRequestDTO pageRequestDTO, RedirectAttributes rttr) {
+					log.info("관리자 답변 정보 : {}", dto);
+			
+					if (result.hasErrors()) {
+						return "/customer/adminreplypage";
+					}
+			
+					Long arno = aService.register(dto);
+			
+					rttr.addFlashAttribute("msg", arno + "번 답변이 작성되었습니다");
+					rttr.addAttribute("page", pageRequestDTO.getPage());
+					rttr.addAttribute("size", pageRequestDTO.getSize());
+					rttr.addAttribute("type", pageRequestDTO.getType());
+					rttr.addAttribute("keyword", pageRequestDTO.getKeyword());
+			
+					return "redirect:userquestionpage";
+				}
+
+				@Override
+    @Transactional
+    public Long register(AdminReplyDTO adminReplyDTO) {
+        AdminReply adminReply = adminReplyRepository.save(dtoToEntity(adminReplyDTO));
+
+        CustomerQuestion customerQuestion = customerQuestionRepository
+                .findById(adminReply.getCustomerQuestion().getCono()).get();
+        customerQuestion.setClear(true);
+        customerQuestionRepository.save(customerQuestion);
+
+        return adminReply.getArno();
+    }
+		</code>
+	</pre>
+</section>
+
+<section>
+	<p>
+		추가 개선점
+	</p>
+</section>
+
+
+<section data-auto-animate>
+	<p>
+		<img src="/projectcontent/uploadController fix.png" style="width: 1200px;" alt="">
+	</p>
+	<p class="fragment">같은 방식, 각기 다른 파일</p>
+</section>
+
+<section data-auto-animate>
+	<p>
+		문제점
+	</p>
+</section
+>
+<section data-auto-animate>
+	<p style="font-size: 50px;">
+		문제점
+	</p>
+	<p class="fragment">중복된 파일로 인한 시인성 하락</p>
+	<p class="fragment">불편한 유지보수</p>
+	<p class="fragment">프로젝트 용량 증대</p>
+</section>
+
+<section>
+<h4>클래스 통일</h4>
+	<span>
+		<img src="/projectcontent/upload 공유.png" alt="">
+	</span>
+	<span>
+		<img src="/projectcontent/upload 공유2.png" alt="">
+	</span>
+</section>
+
+<section
+data-auto-animate
+style="width: 500px"
+data-background="/projectcontent/UploadController 압축 완료2.png"
+data-background-size="800px"
+data-background-position="85%"
+>
+<span>통합 이미지 업로드 컨트롤</span>
+<img src="/projectcontent/UploadController 압축 완료.png" style="width: 360px;" alt="">
+</section>
+
+<section
+>
+<span>통합 이미지 업로드 DTO</span>
+<img src="/projectcontent/UploadDto 압축 완료.png" style="width: 500px;" alt="">
+</section>
+
+
+
+<section data-auto-animate>
+	<p style="font-size: 50px;">
+		이전 코드와 비교
+	</p>
+	<br>
+	<div style="color: yellow;" class="fragment">
+		<ul>
+			<li>간편해진 유지보수</li>
+			<li>프로젝트 용량 하락</li>
+			<li>메모리 소비 최소화로 성능 증가</li>
+		</ul>
+	</div>
+</section>
+
+<section data-background-video="/projectcontent/bandicam 2025-02-20 12-02-58-225.mp4" data-background-video-muted data-background-size="contain">
+</section>
+
+<section>
+	<h3 class="fragment">자체 평가 및 느낀점</h3>
+	<br />
+	<ul style="font-size: 24px">
+	  <li class="fragment">
+		- 시간을 들여 프로젝트의 전체적인 구상과 설계를 팀원과의 회의를 통해 다져 놓았기에 
+		업무가 분담 되었더라도 각 팀원간의 정보전달 및 연동이 매우 빠르게 진행되었습니다.
+	  </li>
+	  <br />
+	  <li class="fragment">
+		- 전반적으로 짜여진 계획 및 구상을 토대로, 데이터 베이스 설계를 한 명이 전담하여
+		구체적으로 작성한 뒤 배포, 다른 팀원들은 설계가 진행되는 동안 각자의 디자인, 페이지
+		구상 등을 계획하여 시간을 효율적으로 사용 할 수 있었습니다.
+	 
+	  </li>
+	  <br />
+	  <li class="fragment">
+		- 하지만 페이지 자체의 디테일적인 파트별 기능 및 디자인을 의논을 통해 확실하게 
+		구상하지 않았던 것이 추후 작업에 들어가는 시간에 많은 지장을 주었습니다.
+	 
+	  </li>
+	  <br>
+	  <li class="fragment">
+		-  또한 하나의 팀으로서의 작업, 유지보수적 측면에서 각 코드의 최적화가 
+		프로젝트에 주는 영향이 어떤지 알 수 있었습니다
+	 
+	  </li>
+	</ul>
+  </section>
+
+
+        <!-- gallery -->
+        <section>
+          <section>
+            <div style="font-size: 50px; font-weight: 900">Gallery</div>
+            <div>박현서</div>
+          </section>
+          <section>
+            <h3 class="fragment">주 업무</h3>
+            <br />
+            <ul style="font-size: 24px">
+              <li class="fragment">
+                ○ 갤러리 사진관 구현 (FrontEnd 및 BackEnd)
+              </li>
+              <br />
+              <li class="fragment">○ 이미지 관련 코드 최적화</li>
+              <br />
+              <li class="fragment">○ 전반적인 프로젝트 DB 구축 관여</li>
+            </ul>
+          </section>
+        </section>
+
+
+
+	  <section
+	  data-auto-animate
+	  style="width: 500px"
+	  data-background="/projectcontent/fdasfa4.png"
+	  data-background-size="1200px"
+	></section>
+
+	<section>
+		<h3>Gallery List</h3>
+		<pre data-id="" style=" height: 500px;">
+			<code style="font-size: 10px;" data-line-numbers="|1-13|15-19|21-32" data-trim data-noescape>
+				@Override
+				public PageResultDTO<GalleryDTO, Object[]> getList(PageRequestDTO pageRequestDto, Long myPet, MemberDto memberDto) {
+			
+					Member member = null;
+			
+					// 현재 로그인 사용자의 정보
+					if (memberDto != null) {
+						member = Member.builder().id(memberDto.getId()).build();
+						log.info("로그인 사용자 {}", member.getId());
+					}
+			
+					pageRequestDto.setSize(16);
+					log.info("전체 gallery service list 요청 {}", pageRequestDto);
+			
+					Page<Object[]> result = galleryRepository.getTotalList(pageRequestDto.getType(),
+							pageRequestDto.getKeyword(),
+							myPet,
+							member,
+							pageRequestDto.getPageable(Sort.by("gno").descending()));
+			
+					Function<Object[], GalleryDTO> function = null;
+			
+					if (memberDto != null) {
+						function = (en -> entityToDto((Gallery) en[0],
+								(List<GalleryImage>) Arrays.asList((GalleryImage) en[1]), (Long) en[2]));
+					} else {
+						function = (en -> entityToDto((Gallery) en[0],
+								(List<GalleryImage>) Arrays.asList((GalleryImage) en[1]), null));
+					}
+			
+					return new PageResultDTO<>(result, function, 10);
+				}
+			</code>
+		</pre>
+	</section>
+
+	<section 	  data-auto-animate
+	style="width: 500px;"
+	data-background="/projectcontent/fdasfa5.png"
+	data-background-size="1000px"
+	data-background-position="95%">
+		<pre
+		data-id="code-animation"
+		style="width: 550px; height: 500px; left: -150px"
+	  >
+		<code style="font-size: 10px;" data-line-numbers data-trim data-noescape>
+			@Override
+	public Long register(GalleryDTO galleryDTO) {
+		log.info("등록 {}", galleryDTO);
+		
+			Map<String, Object> entityMap = dtoToEntity(galleryDTO);
+		Gallery gallery = (Gallery) entityMap.get("gallery");
+		List<GalleryImage> galleryImages = (List<GalleryImage>) entityMap.get("galleryImages");
+			
+		galleryRepository.save(gallery);
+		galleryImages.forEach(galleryImage -> galleryImageRepository.save(galleryImage));
+	
+		return gallery.getGno();
+	}
+		 </code>
+	</pre>
+
+	</section>
+	<section 	  data-auto-animate
+	style="width: 500px;"
+	data-background="/projectcontent/fdasfa5.png"
+	data-background-size="1000px"
+	data-background-position="95%">
+		<pre
+		data-id="code-animation"
+		style="width: 550px; height: 500px; left: -150px"
+	  >
+		<code style="font-size: 10px;" data-line-numbers="1-19|28-45" data-trim data-noescape>
+		<script>
+// [type=file] change event 처리
+const fileInput = document.querySelector("[type='file']");
+
+function showUploadImages(files) {
+  // 이미지 보여줄 영역 찾아오기
+  const output = document.querySelector(".uploadResult ul");
+
+  let tags = "";
+  files.forEach((file) => {
+    tags += `<li data-name="${file.fileName}" data-path="${file.folderPath}" data-uuid="${file.uuid}">`;
+    tags += `<div>`;
+    tags += `<a href=""><img src="/imageUpload/display?fileName=${file.thumbImageURL}&fileFolder=gUpload" class="block"></a>`;
+    tags += `<span class="text-sm d-inline-block mx-1">${file.fileName}</span>`;
+    tags += `</div>`;
+    tags += `</li>`;
+  });
+  output.insertAdjacentHTML("beforeend", tags);
+}
+
+fileInput.addEventListener("change", (e) => {
+  const files = e.target.files;
+  const changeTag = document.querySelector(".uploadResult li");
+  if (changeTag != null) {
+    changeTag.remove();
+  }
+
+  let formData = new FormData();
+  for (let index = 0; index < files.length; index++) {
+    formData.append("uploadFiles", files[index]);
+  }
+  formData.append("fileAddress", "gUpload");
+
+  fetch("/imageUpload/upload", {
+    method: "post",
+    headers: {
+      "X-CSRF-TOKEN": csrfValue,
+    },
+    body: formData,
+  })
+    .then((response) => response.json())
+    .then((data) => {
+      console.log(data);
+      // 첨부 파일 화면 출력
+
+      showUploadImages(data);
+    });
+});
+</script>
+</code>
+</pre>
+
+	</section>
+
+		<section
+		data-auto-animate
+		style="width: 500px"
+		data-background="/projectcontent/fdasfa2.png"
+		data-background-size="1200px"
+	  ></section>
+
+
+		<section
+		data-auto-animate
+		style="width: 500px"
+		data-background="/projectcontent/fdasfa6.png"
+		data-background-size="1200px"
+	  ></section>
+	  <section
+	  data-auto-animate
+	  style="width: 500px"
+	  data-background="/projectcontent/fdasfa.png"
+	  data-background-size="1200px"
+	></section>
+		<section
+		data-auto-animate
+		style="width: 500px"
+		data-background="/projectcontent/fdasfa8.png"
+		data-background-size="1200px"
+	  ></section>
+		<section
+		data-auto-animate
+		style="width: 500px"
+		data-background="/projectcontent/fdasfa7.png"
+		data-background-size="1200px"
+	  ></section>
+
+	  <section data-background-video="/projectcontent/KakaoTalk_20250220_114843639.mp4" data-background-video-muted data-background-size="contain">
+	</section>
+
+
+	<section>
+		<h3 class="fragment">느낀점</h3>
+		<br />
+		<ul style="font-size: 24px">
+		  <li class="fragment">
+			- 팀원간 중복되는 코드가 상당부분 있어, 이러한 부분은 공통메소드로서 서로 비슷한 코드를 줄일 수 있을 것으로 생각되었습니다
+		  </li>
+		</ul>
+	  </section>
+
+        <section>
+          <section>
+            <div style="font-size: 50px; font-weight: 900">Member</div>
+            <div>김 준아(조기수료)</div>
+          </section>
+          <section>
+            <h3 class="fragment">주 업무</h3>
+            <br />
+            <ul style="font-size: 24px">
+              <li class="fragment">
+                ○ 회원등록, 해지 등 회원관리 작업 (FrontEnd 및 BackEnd)
+              </li>
+              <br />
+              <li class="fragment">
+                ○ 전반적인 보안(Security) 구성 담당 및 구축
+              </li>
+              <br />
+              <li class="fragment">
+                ○ 프로필 화면 및 로그인, 로그아웃 등 유저 핸들링 시스템 구현
+              </li>
+            </ul>
+          </section>
+        </section>
+
+        <!-- board -->
+        <section>
+          <section>
+            <div style="font-size: 50px; font-weight: 900">Board</div>
+            <div>최유빈</div>
+          </section>
+          <section>
+            <h3 class="fragment">주 업무</h3>
+            <br />
+            <ul style="font-size: 24px">
+              <li class="fragment">
+                ○ 유저간의 소통을 위한 자유게시판 설계 및 구성 (FrontEnd 및
+                BackEnd)
+              </li>
+              <br />
+              <li class="fragment">
+                ○ 다양한 항목의 카테고리로 여러게시판 이용 가능한 기능 구축
+              </li>
+              <br />
+              <li class="fragment">
+                ○ 최적화된 DB 설계를 위하여 다양한 관점에서 의견 제시 및 토의
+              </li>
+              <br />
+              <li class="fragment">○ 회원관리 후처리 작업</li>
+            </ul>
+          </section>
+        </section>
+		
+		<section
+		data-auto-animate
+		style="width: 500px"
+		data-background="/projectcontent/dsadssa.png"
+		data-background-size="1200px"
+		></section>
+		<section
+		data-auto-animate
+		style="width: 500px"
+		data-background="/projectcontent/dsadssa2.png"
+		data-background-size="1200px"
+		></section>
+		<section
+		data-auto-animate
+		style="width: 500px"
+		data-background="/projectcontent/dsadssa3.png"
+		data-background-size="1200px"
+		></section>
+		<section
+		data-auto-animate
+		style="width: 500px"
+		data-background="/projectcontent/dsadssa4.png"
+		data-background-size="1200px"
+		></section>
+		<section data-auto-animate>
+			<h3>Member 후처리</h3>
+			<img src="/projectcontent/dsadssa5.png" alt="">
 		</section>
+		<section data-auto-animate>
+			<h3>Member 후처리</h3>
+			<img src="/projectcontent/dsadssa6.png" alt="">
+		</section>
+
+	
+	<section data-background-video="/projectcontent/KakaoTalk_20250220_120400947.mp4" data-background-video-muted data-background-size="contain">
+	</section>
+
+		<section>
+		  <h3 class="fragment">내가 느낀 보완점</h3>
+		  <br />
+		  <ul style="font-size: 24px">
+			<li class="fragment">
+				- 각 팀원이 각각의 부분을 맡아 개별적으로 코드를 작성하다 보니 서로 중복되는 코드가 상당히 많은 것을 느껴 코드를 간결화 할 부분이 많음
+			</li>
+			<br />
+			<li class="fragment">
+				- 코드 작성과 오류 수정에 주로 시간을 소요하여 CSS쪽에 신경을 많이 못 씀
+			</li>
+			<br />
+			<li class="fragment">
+				- 팀원 간 적극적인 소통을 하였으나 세부적인 부분까지는 신경을 못 썼기에 아쉬운 부분 존재
+			</li>
+		  </ul>
+		</section>
+		
+        <!-- market -->
+        <section>
+          <section>
+            <div style="font-size: 50px; font-weight: 900">Market</div>
+            <div>김민창</div>
+          </section>
+          <section>
+            <h3 class="fragment">주 업무</h3>
+            <br />
+            <ul style="font-size: 24px">
+              <li class="fragment">
+                ○ 중고 마켓과 나눔 마켓, 두가지 타입의 거래공간 마련 (FrontEnd
+                및 BackEnd)
+              </li>
+              <br />
+              <li class="fragment">
+                ○ 각종 물품, 지역, 개체별 상품에 대한 글 작성 및 시스템 마련
+              </li>
+              <br />
+              <li class="fragment">
+                ○ DB설계를 위한 구체적인 직관적인 접근성에 대한 방법 제시
+              </li>
+            </ul>
+          </section>
+        </section>
+
+		<section
+		data-auto-animate
+		style="width: 500px"
+		data-background="/projectcontent/dsada.png"
+		data-background-size="1200px"
+	  ></section>
+	  <section
+	  data-auto-animate
+	  style="width: 500px"
+	  data-background="/projectcontent/dsada1.png"
+	  data-background-size="1200px"
+	></section>
+		<section
+		data-auto-animate
+		style="width: 500px"
+		data-background="/projectcontent/dsada2.png"
+		data-background-size="1200px"
+	  ></section>
+		<section
+		data-auto-animate
+		style="width: 500px"
+		data-background="/projectcontent/dsada3.png"
+		data-background-size="1200px"
+	  ></section>
+		
+	  <section data-background-video="/projectcontent/KakaoTalk_20250220_130426170.mp4" data-background-video-muted data-background-size="cover">
+	</section>
+
+	<section>
+		<h3 class="fragment">느낀점</h3>
+		<br />
+		<ul style="font-size: 24px">
+		  <li class="fragment">
+이번 프로젝트를 진행하면서 원하는 디자인을 충분히 표현하지 못한 점이 아쉬웠지만, 
+<br>조건문과 쿼리에 대한 깊이 있는 공부를 할 수 있어 의미 있는 시간이었다. <br>
+특히, 희망 거래 장소를 지도화하는 API와 본인 게시글에 댓글이 달릴 시,<br>
+ 이메일 알림을 보내는 API를 구현하려 했으나 
+끝까지 마무리하지 못한 점이 가장 아쉬웠다.
+		  </li>
+		</ul>
+	  </section>
+
+	<section>
+		<h3 class="fragment">프로젝트 종합 소감</h3>
+	  </section>
+	  
+	<section>
+		<section>
+			<a class="fragment" href="https://revealjs.com/" >
+				<img style="width: 500px;" src="/projectcontent/reavl.png" alt="">
+			</a>
+			<div class="fragment">
+				PPT Framework RevealJs
+			</div>
+		</section>
+		
+		<section>
+			<p class="fragment">Follow github link - <a href="https://github.com/yhs02252/project-reveal--ppt">"Project-PPT"</a></p>
+		</section>
+	
+		<section>
+			<h1 style="font-weight: 400;">감사합니다</h1>
+		</section>
+	</section>
       </div>
     </div>
 
